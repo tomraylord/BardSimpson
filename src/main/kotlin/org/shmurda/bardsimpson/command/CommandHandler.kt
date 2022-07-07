@@ -3,11 +3,13 @@ package org.shmurda.bardsimpson.command
 import net.dv8tion.jda.api.JDA
 import net.dv8tion.jda.api.events.interaction.SlashCommandEvent
 import net.dv8tion.jda.api.hooks.ListenerAdapter
+import org.shmurda.bardsimpson.command.impl.HelpCommand
 import org.shmurda.bardsimpson.command.impl.VersionCommand
 
 class CommandHandler(private val jda: JDA) : ListenerAdapter() {
 
     private val slashCommands: List<BardCommand> = listOf(
+        HelpCommand(),
         VersionCommand()
     )
 
@@ -15,6 +17,7 @@ class CommandHandler(private val jda: JDA) : ListenerAdapter() {
 
     init {
         jda.addEventListener(this)
+        jda.updateCommands()
         registerCommands()
     }
 
@@ -25,7 +28,7 @@ class CommandHandler(private val jda: JDA) : ListenerAdapter() {
                 mappedCommands[cmd.name] = it
 
                 jda.upsertCommand(cmd.name, cmd.description).queue()
-                println("Registered Command: ${cmd.name}")
+                println("Registered Command: /${cmd.name}")
             }
         }
     }
