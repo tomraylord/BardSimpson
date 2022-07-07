@@ -73,6 +73,7 @@
                             <mainClass>org.shmurda.StartKt</mainClass>
                         </manifest>
                     </archive>
+                    <outputDirectory>${project.basedir}/built/</outputDirectory>
                 </configuration>
             </plugin>
 
