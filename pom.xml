@@ -5,10 +5,10 @@
 
     <groupId>org.shmurda</groupId>
     <artifactId>BardSimpson</artifactId>
-    <version>1.0</version>
+    <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>Bard Simpson</name>
+    <name>BardSimpson</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
