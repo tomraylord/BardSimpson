@@ -44,7 +44,6 @@ class Bard {
 
     private fun registerJDA() {
         val builder = JDABuilder.createDefault("OTk0MzAyNTk0NjkwMzMwNjQ0.GIR1RN.xGQhuyzvchKRKp4rMVd6egqwYE_Fec4cS49w3k")
-        builder.setActivity(Activity.listening("Bard chimes. [/help]"))
 
         jda = builder.enableIntents(listOf(GatewayIntent.GUILD_MEMBERS, GatewayIntent.GUILD_MESSAGES)).build()
 
@@ -59,6 +58,11 @@ class Bard {
     companion object {
         @JvmStatic
         lateinit var bard: Bard
+
+        @JvmStatic
+        fun getVersion(): String {
+            return "1.0-SNAPSHOT"
+        }
     }
 
 }

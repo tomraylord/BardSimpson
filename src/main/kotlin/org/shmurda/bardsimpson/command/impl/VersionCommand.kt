@@ -1,14 +1,21 @@
 package org.shmurda.bardsimpson.command.impl
 
+import net.dv8tion.jda.api.EmbedBuilder
 import net.dv8tion.jda.api.events.interaction.SlashCommandEvent
+import org.shmurda.bardsimpson.Bard
 import org.shmurda.bardsimpson.command.BardCommand
 import org.shmurda.bardsimpson.command.Cmd
+import java.time.Instant
 
 @Cmd("version", "Returns version information about the current instance.")
 class VersionCommand : BardCommand() {
 
     override fun handleCommand(event: SlashCommandEvent) {
-        event.hook.sendMessage("Unknown Build").queue()
+        val embed: EmbedBuilder = EmbedBuilder().setColor(Bard.bard.rgb())
+            .setDescription("Bard version: **" + Bard.getVersion() + "**")
+            .setTimestamp(Instant.now())
+
+        event.hook.sendMessageEmbeds(embed.build()).queue()
     }
 
 }

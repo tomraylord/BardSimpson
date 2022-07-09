@@ -11,15 +11,12 @@ import java.time.Instant
 class HelpCommand : BardCommand() {
 
     override fun handleCommand(event: SlashCommandEvent) {
-        val embed: EmbedBuilder = EmbedBuilder().setTitle("General Information").setColor(Bard.bard.rgb())
-            .addField("/help", "Reopens this menu.", true)
-            .setFooter("Page #1/2")
-        val embed2: EmbedBuilder = EmbedBuilder().setTitle("Slash Commands").setColor(Bard.bard.rgb())
+        val embed: EmbedBuilder = EmbedBuilder().setTitle("Commands").setColor(Bard.bard.rgb())
             .addField("/help", "Displays all commands.", true)
             .addField("/version", "Displays build number and version.", true)
             .setTimestamp(Instant.now())
-            .setFooter("Page #2/2")
+            .setFooter("Page #1/1")
 
-        event.hook.sendMessageEmbeds(embed.build(), embed2.build()).queue()
+        event.hook.sendMessageEmbeds(embed.build()).queue()
     }
 }

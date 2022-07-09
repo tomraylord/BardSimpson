@@ -8,16 +8,14 @@ class ActivityTask(private val jda: JDA) : TimerTask() {
 
     private var stage = 0
     private val stages = listOf(
-        "Bard chimes",
-        "Bard plays a tune",
-        "Bard laughs",
-        "A meep chimes",
-        "Bard sings"
+        "over the Meeps",
+        "The Simpsons",
+        "@gbo_tom's twitter videos"
     )
 
     override fun run() {
+        jda.presence.activity = Activity.watching("${stages[stage]}. /help")
         if (++stage >= stages.size) stage = 0
-        jda.presence.activity = Activity.listening("${stages[stage]}. /help")
     }
 
 }
