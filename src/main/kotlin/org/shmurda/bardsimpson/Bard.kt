@@ -16,8 +16,8 @@ import java.util.*
 
 class Bard {
 
-    private lateinit var jda: JDA
-    private lateinit var mongo: MongoDatabase
+    lateinit var jda: JDA
+    lateinit var mongo: MongoDatabase
     private var commandHandler: CommandHandler
     private var meepHandler: MeepHandler
 
