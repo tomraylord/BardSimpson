@@ -146,6 +146,9 @@
                     <injectAllReactorProjects>true</injectAllReactorProjects>
                     <commitIdGenerationMode>full</commitIdGenerationMode>
                     <abbrevLength>8</abbrevLength>
+                    <format>json</format>
+                    <verbose>false</verbose>
+                    <prefix>git</prefix>
                 </configuration>
             </plugin>
         </plugins>
