@@ -14,8 +14,10 @@ class VersionCommand : BardCommand() {
         val embed: EmbedBuilder = EmbedBuilder().setColor(Bard.bard.rgb())
             .setDescription("Branch: **${Bard.version.branch}** \n" +
                     "ID: **${Bard.version.commit}** \n" +
-                    "<**${Bard.version.commitUser}** @ **${Bard.version.commitTime}**> \n" +
-                    "**${Bard.version.commitMessage}**")
+                    if (Bard.version.commit != "Unable to find commit.")
+                        "<**${Bard.version.commitUser}** @ **${Bard.version.commitTime}**> \n" +
+                                "**${Bard.version.commitMessage}**"
+                    else "")
             .setTimestamp(Instant.now())
 
         event.hook.sendMessageEmbeds(embed.build()).queue()
