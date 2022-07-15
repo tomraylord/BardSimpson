@@ -12,7 +12,10 @@ class VersionCommand : BardCommand() {
 
     override fun handleCommand(event: SlashCommandEvent) {
         val embed: EmbedBuilder = EmbedBuilder().setColor(Bard.bard.rgb())
-            .setDescription("Bard version: **" + Bard.getVersion() + "**")
+            .setDescription("Branch: **${Bard.version.branch}** \n" +
+                    "ID: **${Bard.version.commit}** \n" +
+                    "<**${Bard.version.commitUser}** @ **${Bard.version.commitTime}**> \n" +
+                    "**${Bard.version.commitMessage}**")
             .setTimestamp(Instant.now())
 
         event.hook.sendMessageEmbeds(embed.build()).queue()

@@ -4,13 +4,14 @@ import com.mongodb.MongoClient
 import com.mongodb.client.MongoDatabase
 import net.dv8tion.jda.api.JDA
 import net.dv8tion.jda.api.JDABuilder
-import net.dv8tion.jda.api.entities.Activity
 import net.dv8tion.jda.api.requests.GatewayIntent
 import org.shmurda.bardsimpson.command.CommandHandler
 import org.shmurda.bardsimpson.meep.MeepHandler
 import org.shmurda.bardsimpson.task.ActivityTask
 import org.shmurda.bardsimpson.util.ColourUtil
 import org.shmurda.bardsimpson.util.TimeUtil
+import org.shmurda.bardsimpson.util.version.VersionInfo
+import org.shmurda.bardsimpson.util.version.VersionUtil
 import java.awt.Color
 import java.util.*
 
@@ -32,17 +33,20 @@ class Bard {
         bard = this
         val startTime = System.currentTimeMillis()
 
-        println("${green}Loading JDA...$blue (1/4)$reset")
+        println("${green}Loading Version Info...$blue (1/5)$reset")
+        version = VersionUtil.generateVersionInfo()
+
+        println("${green}Loading JDA...$blue (2/5)$reset")
         registerJDA()
         println("Ignore all SLF4J Logs above")
 
-        println("${green}Loading Command Handler...$blue (2/4)$reset")
+        println("${green}Loading Command Handler...$blue (3/5)$reset")
         commandHandler = CommandHandler(jda)
 
-        println("${green}Loading MongoDB...$blue (3/4)$reset")
-        registerMongo()
+        println("${green}Connecting to MongoDB...$blue (4/5)$reset")
+        connectMongo()
 
-        println("${green}Loading Meep Handler...$blue (4/4)$reset")
+        println("${green}Loading Meep Handler...$blue (5/5)$reset")
         meepHandler = MeepHandler(jda)
 
         println("${green}Finished, took " + TimeUtil.elapsed(startTime) + "s.$reset")
@@ -57,7 +61,7 @@ class Bard {
         timer.schedule(ActivityTask(jda), 0, 10000)
     }
 
-    private fun registerMongo() {
+    private fun connectMongo() {
         mongo = MongoClient("127.0.0.1", 27017).getDatabase("bard-simpson")
     }
 
@@ -68,11 +72,8 @@ class Bard {
     companion object {
         @JvmStatic
         lateinit var bard: Bard
-
         @JvmStatic
-        fun getVersion(): String {
-            return "1.0-SNAPSHOT"
-        }
+        lateinit var version: VersionInfo
     }
 
 }
