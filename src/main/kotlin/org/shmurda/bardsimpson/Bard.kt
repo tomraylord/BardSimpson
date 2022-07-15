@@ -34,7 +34,14 @@ class Bard {
         val startTime = System.currentTimeMillis()
 
         println("${green}Loading Version Info...$blue (1/5)$reset")
-        version = VersionUtil.generateVersionInfo()
+        version = try {
+            VersionUtil.generateVersionInfo()
+        } catch (e: NullPointerException) {
+            e.printStackTrace()
+
+            println("${red}There was an error whilst obtaining version info, no git.properties?$reset")
+            VersionInfo()
+        }
 
         println("${green}Loading JDA...$blue (2/5)$reset")
         registerJDA()
