@@ -10,6 +10,7 @@ import org.shmurda.bardsimpson.meep.MeepHandler
 import org.shmurda.bardsimpson.task.ActivityTask
 import org.shmurda.bardsimpson.util.ColourUtil
 import org.shmurda.bardsimpson.util.TimeUtil
+import org.shmurda.bardsimpson.util.TokenUtil
 import org.shmurda.bardsimpson.util.version.VersionInfo
 import org.shmurda.bardsimpson.util.version.VersionUtil
 import java.awt.Color
@@ -60,7 +61,7 @@ class Bard {
     }
 
     private fun registerJDA() {
-        val builder = JDABuilder.createDefault("OTk0MzAyNTk0NjkwMzMwNjQ0.GIR1RN.xGQhuyzvchKRKp4rMVd6egqwYE_Fec4cS49w3k")
+        val builder = JDABuilder.createDefault(TokenUtil.getToken())
 
         jda = builder.enableIntents(listOf(GatewayIntent.GUILD_MEMBERS, GatewayIntent.GUILD_MESSAGES)).build()
 
